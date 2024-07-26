@@ -1,3 +1,4 @@
+import sys
 import re
 import shlex
 from dataclasses import dataclass, replace
@@ -87,8 +88,10 @@ class Expression:
         """
         settings = settings or Settings()
 
-        # Remove escaped new lines where a key=value pair has been split by a new line
-        s = re.sub(r"= *\\\n *", "=", s)
+        # Remove escaped new lines followed by a space
+        s = re.sub(r"\\\n[ ]{4}\\_", " ", s)
+        # Remove escaped new lines
+        s = re.sub(r"\\\n[ ]{4}", "", s)
 
         # Sanity check
         assert s.count("[") <= 1, f"Too many sub-expressions, cannot parse: {s}"

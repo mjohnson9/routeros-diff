@@ -30,12 +30,15 @@ def quote(s: str):
     if not s:
         return '""'
 
-    assert (
-        '"' not in s
-    ), """Found value containing a double quote ("). We cannot quote this. Remove the char from the string"""
-    specials = ["\\", " ", "$", "(", ")", "[", "]", "{", "}", ";", "=", "`", "~", "/"]
+    # assert (
+    #     '"' not in s
+    # ), """Found value containing a double quote ("). We cannot quote this. Remove the char from the string"""
+    specials = ["\\", " ", "$", "(", ")", "[", "]", "{", "}", ";", "=", "`", "~", "/", "\""]
 
     if any(c in s for c in specials):
+        s = s.replace("\"", "\\\"")
+        return f'"{s}"'
+    elif s.startswith("ID:"):
         return f'"{s}"'
     else:
         return s
