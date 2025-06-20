@@ -44,9 +44,9 @@ def unescape_string(s: str):
 
     # Remove escaped new lines where the new line starts with a \_
     # (\_ should be interpreted as space)
-    s = re.sub(r" *\\\n *\\_", " ", s)
+    s = re.sub(r" \\\n[ ]{5}\\_", " ", s)
 
     # Escapes without an '_' should simply be removed
-    s = re.sub(r" *\\\n *", "", s)
+    s = re.sub(r" \\\n[ ]{5}", "", s)
 
     return s
