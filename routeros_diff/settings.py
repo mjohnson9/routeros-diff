@@ -78,6 +78,13 @@ class Settings:
         "/ip firewall filter",
         "/ip firewall mangle",
         "/ip firewall nat",
+        "/ip firewall raw",
+
+        "/ipv6 firewall calea",
+        "/ipv6 firewall filter",
+        "/ipv6 firewall mangle",
+        "/ipv6 firewall nat",
+        "/ipv6 firewall raw",
     }
 
     def __init__(
